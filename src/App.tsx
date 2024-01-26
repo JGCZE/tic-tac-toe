@@ -1,7 +1,9 @@
+//import { useState } from 'react'
 import './App.css'
 import Square from './components/Square'
 
 const App = () => {
+  //const [squares, setSquares] = useState<Array<number | string>>([])
 
   return (
     <>
