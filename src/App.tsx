@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const App = () => {
   const playFiled = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const [Xscore, setXScore] = useState<Array<number | string>>([])
-  const [Oscore, setOScore] = useState<Array<number | string>>([])
+  const [winner, setWinner] = useState<string>('test')
+  const [Xscore, setXScore] = useState<Array<number>>([])
+  const [Oscore, setOScore] = useState<Array<number>>([])
   const [xIsNext, setXIsNext] = useState<boolean>(true)
 
   const handleClick = (item: number) => {
@@ -41,18 +42,23 @@ const App = () => {
     for (let i = 0; i < winner.length; i++) {
       const [a, b, c] = winner[i]
       if (Xscore.includes(a) && Xscore.includes(b) && Xscore.includes(c)) {
-        console.log("X is winner")
+        setWinner(() => "X is winner")
       } else if (Oscore.includes(a) && Oscore.includes(b) && Oscore.includes(c)) {
-        console.log("O is winner")
+        setWinner(() => "O is winner")
       }
     }
   }
-  calculateWinner()
+
+  useEffect(() => {
+    calculateWinner()
+  }
+  , [Xscore, Oscore])
   
   return (
     <>
       <div className='container'>
         <div className='wrapper'>
+          <h2 className='player'>winner: {winner} </h2>
           <div className='first-row'>
             {playFiled.map((item) => {
               return (
