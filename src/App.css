@@ -1,8 +1,6 @@
-.first-row,
-.second-row,
-.third-row {
-  display: flex;
-  flex-direction: row;
+.first-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .square {
